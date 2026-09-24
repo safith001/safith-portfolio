@@ -38,7 +38,7 @@ export function HeroSection() {
                 fill
                 priority
                 sizes="(max-width: 640px) 128px, 160px"
-                className="object-cover object-[center_25%]"
+                className="object-cover object-top scale-[2.3] origin-[50%_18%]"
               />
             </div>
           </div>
