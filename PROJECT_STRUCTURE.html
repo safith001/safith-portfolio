@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mohammed Safith - Codebase Architecture & Project Structure</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 11px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      color: #ffffff;
+      padding: 22px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #4f46e5;
+      page-break-inside: avoid;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-indigo { background: #3730a3; color: #ffffff; }
+    .badge-cyan { background: #0891b2; color: #ffffff; }
+    .badge-emerald { background: #059669; color: #ffffff; }
+    .badge-dark { background: #1e1b4b; color: #c7d2fe; }
+
+    .header-banner h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+      color: #ffffff;
+    }
+
+    .header-banner .tagline {
+      font-size: 12px;
+      color: #c7d2fe;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .meta-item {
+      font-size: 9.5px;
+    }
+
+    .meta-label {
+      color: #c7d2fe;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 1px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .num {
+      background: #4f46e5;
+      color: #ffffff;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 9px;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      border: 1px solid #334155;
+      page-break-inside: avoid;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border: none;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 10px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    .card h4 {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      color: #0f172a;
+    }
+
+    .card p {
+      font-size: 9.5px;
+      color: #475569;
+      margin-bottom: 3px;
+    }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid #4f46e5;
+      background: #eef2ff;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 10.5px;
+      color: #312e81;
+      page-break-inside: avoid;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      margin-top: 18px;
+      font-size: 8.5px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="badge-bar">
+        <span class="badge badge-indigo">Clean Architecture</span>
+        <span class="badge badge-cyan">Server-First Islands</span>
+        <span class="badge badge-emerald">Modular Data Stores</span>
+        <span class="badge badge-dark">Scalable Structure</span>
+      </div>
+      <h1>CODEBASE ARCHITECTURE & PROJECT STRUCTURE</h1>
+      <div class="tagline">File Map, Boundaries & Scalability Specifications — Mohammed Sarook Mohammed Safith ("SAFITH THE VIBE CODER 😂")</div>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Routing</div>
+          <div class="meta-val">Next.js 14+ App Router</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Components</div>
+          <div class="meta-val">Server & Client Islands</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Data Architecture</div>
+          <div class="meta-val">Decoupled Static Stores</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Type Safety</div>
+          <div class="meta-val">TypeScript Strict Contracts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> Visual Directory Hierarchy Map</div>
+      <pre><code>portfolio/
+├── 📄 package.json          # Dependency list & build scripts (Next.js, Tailwind, Framer Motion)
+├── 📄 tsconfig.json         # Strict TypeScript compiler options & `@/*` path aliases
+├── 📄 tailwind.config.ts    # CSS custom property bindings & design tokens
+├── 📄 next.config.mjs       # Next.js compiler tuning & next-intl plugin integration
+│
+├── 📁 messages/             # i18n Translation dictionaries (en.json, ta.json, ur.json)
+├── 📁 public/               # Static assets: CV PDF, project preview screenshots, avatar
+│
+└── 📁 src/                  # Application Source
+    ├── 📄 middleware.ts     # Edge locale interceptor (handles /[locale]/...)
+    ├── 📁 app/              # App Router root, globals.css, and localized routes
+    ├── 📁 components/       # layout/, sections/, ui/, motion/ components
+    ├── 📁 data/             # Static data stores: projects.ts, skills.ts, timeline.ts
+    ├── 📁 hooks/            # Custom hooks: useTheme.ts, useScrollSpy.ts
+    ├── 📁 lib/              # Utilities: cn() helper, theme configs
+    └── 📁 types/            # Strict TypeScript interfaces (index.ts)</code></pre>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Component Boundaries: Server (RSC) vs. Client</div>
+      <p>Next.js 14+ defaults to Server Components (RSC). Client Components (<code>'use client'</code>) are strictly isolated to interactive islands:</p>
+      
+      <div class="grid-2">
+        <div class="card" style="border-left: 3px solid #059669; background: #ecfdf5;">
+          <h4 style="color: #065f46;">Server Components (Zero Client JS)</h4>
+          <p>• Runs at build time (SSG); outputs fast HTML.</p>
+          <p>• <code>[locale]/layout.tsx</code> (HTML structure, fonts)</p>
+          <p>• <code>[locale]/page.tsx</code> (Assembles all 7 sections)</p>
+          <p>• <code>Footer.tsx</code> (Static links, copyright)</p>
+          <p>• <code>AboutSection.tsx</code> (Static biography, metrics)</p>
+          <p>• <code>ReferencesSection.tsx</code> (Degree notes)</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid #4f46e5; background: #eef2ff;">
+          <h4 style="color: #3730a3;">Client Components ('use client')</h4>
+          <p>• Runs in browser; handles state & events.</p>
+          <p>• <code>Header.tsx</code> (Sticky scroll observer)</p>
+          <p>• <code>ThemeToggle.tsx</code> (4-theme selector)</p>
+          <p>• <code>LanguageToggle.tsx</code> (URL locale routing)</p>
+          <p>• <code>TypedText.tsx</code> (Animated role cycler)</p>
+          <p>• <code>ContactForm.tsx</code> (Validation & Formspree POST)</p>
+          <p>• <code>ScrollReveal.tsx</code> (Framer Motion viewport inView)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span> Data Flow: Decoupled Stores vs. UI Plates</div>
+      <div class="callout">
+        <div class="callout-title">🍽️ The Restaurant Menu Analogy</div>
+        In a restaurant, the <strong>Menu</strong> (<code>src/data/projects.ts</code>) holds the food items and prices. The <strong>Plates</strong> (<code>src/components/ui/ProjectCard.tsx</code>) are the visual presentation. When you add a new project or change a description, you simply update the data array without risking breaking the UI design.
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Data Store</th>
+            <th>Type Contract</th>
+            <th>Consuming Section Component</th>
+            <th>Delivered Capability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>src/data/projects.ts</code></td>
+            <td><code>Project[]</code></td>
+            <td><code>&lt;ProjectsSection /&gt;</code></td>
+            <td>Renders 4 project cards with tags, statuses, and live links.</td>
+          </tr>
+          <tr>
+            <td><code>src/data/skills.ts</code></td>
+            <td><code>SkillItem[]</code></td>
+            <td><code>&lt;SkillsSection /&gt;</code></td>
+            <td>Renders grouped badges across Languages, Frontend, QA, etc.</td>
+          </tr>
+          <tr>
+            <td><code>src/data/timeline.ts</code></td>
+            <td><code>TimelineEntry[]</code></td>
+            <td><code>&lt;TimelineSection /&gt;</code></td>
+            <td>Renders chronological degree and internship milestones.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> Scalability: How to Extend the Codebase</div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Extension Goal</th>
+            <th>Files to Modify</th>
+            <th>Execution Steps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Add a 5th Project</strong></td>
+            <td><code>src/data/projects.ts</code></td>
+            <td>Append a new project object. The card and <code>/projects/[slug]</code> page are generated automatically at build time.</td>
+          </tr>
+          <tr>
+            <td><strong>Add a 5th Theme</strong></td>
+            <td><code>globals.css</code>, <code>themes.ts</code></td>
+            <td>Declare <code>html[data-theme="new-name"]</code> CSS variables and register the name in <code>themes.ts</code>. Appears in toggle immediately.</td>
+          </tr>
+          <tr>
+            <td><strong>Add a New Language</strong></td>
+            <td><code>messages/</code>, <code>middleware.ts</code></td>
+            <td>Add <code>messages/[locale].json</code>, register the code in middleware, and add the option to <code>LanguageToggle.tsx</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Document Footer -->
+    <div class="doc-footer">
+      <div>Mohammed Sarook Mohammed Safith • Codebase Architecture (PROJECT_STRUCTURE.md) v1.0.0</div>
+      <div>Antigravity IDE Certified • Clean Architecture Blueprint</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

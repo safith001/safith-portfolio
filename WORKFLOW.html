@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mohammed Safith - Developer Sprint & Execution Workflow</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 11px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #059669 100%);
+      color: #ffffff;
+      padding: 22px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #10b981;
+      page-break-inside: avoid;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-emerald { background: #065f46; color: #ffffff; }
+    .badge-teal { background: #0d9488; color: #ffffff; }
+    .badge-indigo { background: #4338ca; color: #ffffff; }
+    .badge-dark { background: #064e3b; color: #d1fae5; }
+
+    .header-banner h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+      color: #ffffff;
+    }
+
+    .header-banner .tagline {
+      font-size: 12px;
+      color: #a7f3d0;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .meta-item {
+      font-size: 9.5px;
+    }
+
+    .meta-label {
+      color: #d1fae5;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 1px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .num {
+      background: #059669;
+      color: #ffffff;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    /* Step Cards */
+    .step-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: #ffffff;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+
+    .step-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3px;
+    }
+
+    .step-card p {
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 10px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid #059669;
+      background: #ecfdf5;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 10.5px;
+      color: #064e3b;
+      page-break-inside: avoid;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* Code */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      margin-top: 18px;
+      font-size: 8.5px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="badge-bar">
+        <span class="badge badge-emerald">Agile Sprint Protocol</span>
+        <span class="badge badge-teal">Story-by-Story PR Flow</span>
+        <span class="badge badge-indigo">Socratic Code Defense</span>
+        <span class="badge badge-dark">4 Structured Sprints</span>
+      </div>
+      <h1>DEVELOPER SPRINT & EXECUTION WORKFLOW</h1>
+      <div class="tagline">Implementation Lifecycle & Verification Protocols — Mohammed Sarook Mohammed Safith ("SAFITH THE VIBE CODER 😂")</div>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Methodology</div>
+          <div class="meta-val">Pair-Programming</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Story Size</div>
+          <div class="meta-val">15 - 30 Minutes</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Active Sprint</div>
+          <div class="meta-val">Sprint 1 (Foundation)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Deploy Target</div>
+          <div class="meta-val">Vercel Edge CI/CD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> The 4-Stage Project Lifecycle</div>
+      <p>Every phase of this project executes through a rigorous 4-stage engineering lifecycle to eliminate vibe-coding:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Phase Name</th>
+            <th>Key Deliverables & Gatekeeper</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Stage 1</strong></td>
+            <td>PRD & Technical Spec</td>
+            <td><code>PRD.md / PRD.pdf</code> and <code>TRD.md / TRD.pdf</code> completed and approved.</td>
+          </tr>
+          <tr>
+            <td><strong>Stage 2</strong></td>
+            <td>Sprint Planning</td>
+            <td>4 Sprints broken into small, numbered User Stories with acceptance criteria.</td>
+          </tr>
+          <tr>
+            <td><strong>Stage 3</strong></td>
+            <td>Pull Request (PR) Workflow</td>
+            <td>Single-story execution, pre-flight concept explanation, targeted diffs, clean comments.</td>
+          </tr>
+          <tr>
+            <td><strong>Stage 4</strong></td>
+            <td>Code Defense & Verification</td>
+            <td>2 Socratic interview questions, user explains logic flow in own words, git commit.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Story-by-Story Pull Request (PR) Workflow</div>
+      
+      <div class="step-card">
+        <div class="step-header">
+          <span>Step 1: Pre-Flight Concept Briefing</span>
+          <span class="badge badge-teal">Mentorship</span>
+        </div>
+        <p>Assistant explains the problem, real-world everyday analogies (e.g. state as whiteboard notes), and the exact syntax patterns being introduced.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span>Step 2: Implementation Plan (<code>/plan</code>)</span>
+          <span class="badge badge-indigo">Planning Mode</span>
+        </div>
+        <p>A structured <code>implementation_plan.md</code> artifact is generated listing specific files, props, and verification steps. Execution pauses until approved.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span>Step 3: Targeted Implementation</span>
+          <span class="badge badge-emerald">Coding</span>
+        </div>
+        <p>Minimal, clean code diffs with detailed explanatory comments. Zero unrelated file edits. Strict adherence to <code>RULES.md</code>.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span>Step 4: Automated Verification</span>
+          <span class="badge badge-teal">QA Audit</span>
+        </div>
+        <p>Run <code>npx tsc --noEmit</code> (0 errors), <code>npm run lint</code> (0 warnings), and visual browser validation across desktop, mobile, and all 4 themes.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span>Step 5: Socratic Code Defense</span>
+          <span class="badge badge-dark">Interview Prep</span>
+        </div>
+        <p>Assistant pauses and asks 2 targeted interview questions. Safith explains the flow in his own words before the story is approved.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span> Sprint 1: Numbered User Stories</div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Story ID</th>
+            <th>Scope & Deliverable</th>
+            <th>Est. Time</th>
+            <th>Acceptance Criteria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Story 1.1</strong></td>
+            <td>Next.js 14+ Init & Tooling</td>
+            <td>20 min</td>
+            <td>Next.js 14, Tailwind, TypeScript strict, Lucide, Framer Motion installed and running cleanly.</td>
+          </tr>
+          <tr>
+            <td><strong>Story 1.2</strong></td>
+            <td>CSS Theme Engine (4 Modes)</td>
+            <td>25 min</td>
+            <td><code>globals.css</code> custom properties, anti-FOUC script in head, zero layout shift on toggle.</td>
+          </tr>
+          <tr>
+            <td><strong>Story 1.3</strong></td>
+            <td>TypeScript Contracts & Data</td>
+            <td>20 min</td>
+            <td><code>src/types/index.ts</code> + static data for PeerConnect, Daily Books, MedExpense, Todo.</td>
+          </tr>
+          <tr>
+            <td><strong>Story 1.4</strong></td>
+            <td>Sticky Header & Toggles</td>
+            <td>30 min</td>
+            <td>Frosted glass navbar, 4-theme dropdown selector, language toggle, accessible mobile drawer.</td>
+          </tr>
+          <tr>
+            <td><strong>Story 1.5</strong></td>
+            <td>Animated Hero Section</td>
+            <td>25 min</td>
+            <td>Formal name, "Vibe Coder 😂" badge, self-typing role cycler, 3 primary action CTA buttons.</td>
+          </tr>
+          <tr>
+            <td><strong>Story 1.6</strong></td>
+            <td>Footer & Vercel Deployment</td>
+            <td>20 min</td>
+            <td>Semantic footer, GitHub repo push, continuous deployment verified on Vercel Edge.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> Educational Debugging Protocol</div>
+      <div class="callout">
+        <div class="callout-title">🛠️ When Errors Occur</div>
+        Never silently patch an error! Walk through the stack trace together:
+        <br><strong>1. Pinpoint:</strong> Which file and line number threw the error?
+        <br><strong>2. Root Cause:</strong> What was JavaScript/TypeScript expecting, and why was it violated?
+        <br><strong>3. Fix & Learn:</strong> Apply the minimal targeted fix and discuss how to prevent similar issues in production.
+      </div>
+    </div>
+
+    <!-- Document Footer -->
+    <div class="doc-footer">
+      <div>Mohammed Sarook Mohammed Safith • Developer Sprint & Execution Workflow (WORKFLOW.md) v1.0.0</div>
+      <div>Antigravity IDE Certified • Step-by-Step Pair Programming</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

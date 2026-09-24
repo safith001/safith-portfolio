@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mohammed Safith - Portfolio PRD & Architecture Spec</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.55;
+      font-size: 11.5px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #334155;
+      page-break-inside: avoid;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-primary { background: #4f46e5; color: #ffffff; }
+    .badge-success { background: #059669; color: #ffffff; }
+    .badge-warning { background: #d97706; color: #ffffff; }
+    .badge-dark { background: #334155; color: #e2e8f0; }
+
+    .header-banner h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .header-banner .tagline {
+      font-size: 13px;
+      color: #a5b4fc;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .meta-item {
+      font-size: 10px;
+    }
+
+    .meta-label {
+      color: #94a3b8;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .num {
+      background: #4f46e5;
+      color: #ffffff;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin-bottom: 12px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 6px 10px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Card Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+    }
+
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    .card-dark {
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #334155;
+    }
+
+    .card-light {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+
+    .card-warm {
+      background: #faf8f5;
+      color: #2d3748;
+      border: 1px solid #e7dfd5;
+    }
+
+    .card-terminal {
+      background: #050505;
+      color: #00ff41;
+      border: 1px solid #00ff41;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card h4 {
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 10px;
+      color: inherit;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    /* Project Cards */
+    .project-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .project-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .tag-container {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .tag-orange { background: #ffedd5; color: #9a3412; }
+    .tag-green { background: #d1fae5; color: #065f46; }
+    .tag-purple { background: #f3e8ff; color: #6b21a8; }
+
+    /* Callout */
+    .callout {
+      border-left: 4px solid #4f46e5;
+      background: #eef2ff;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 10.5px;
+      color: #1e1b4b;
+      page-break-inside: avoid;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .callout-warning {
+      border-left-color: #d97706;
+      background: #fffbeb;
+      color: #78350f;
+    }
+
+    .callout-success {
+      border-left-color: #059669;
+      background: #ecfdf5;
+      color: #064e3b;
+    }
+
+    /* Sprint steps */
+    .sprint-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+
+    .sprint-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .sprint-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 10px;
+      color: #334155;
+    }
+
+    .sprint-list li {
+      margin-bottom: 2px;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .sprint-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #4f46e5;
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      margin-top: 20px;
+      font-size: 9px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="badge-bar">
+        <span class="badge badge-primary">Antigravity Architecture Spec</span>
+        <span class="badge badge-success">Vercel Ready</span>
+        <span class="badge badge-warning">Next.js 14+</span>
+        <span class="badge badge-dark">Hybrid Model</span>
+      </div>
+      <h1>PRODUCT REQUIREMENTS DOCUMENT (PRD)</h1>
+      <div class="tagline">Personal Developer Portfolio — Mohammed Sarook Mohammed Safith ("SAFITH THE VIBE CODER 😂")</div>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Owner</div>
+          <div class="meta-val">Mohammed Safith</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Degree</div>
+          <div class="meta-val">B.IT (Hons) CGPA 3.47</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Target Roles</div>
+          <div class="meta-val">Full-Stack / QA / IT Ops</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Target Host</div>
+          <div class="meta-val">safith-portfolio.vercel.app</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> Executive Summary & Objectives</div>
+      <p>This document details the architectural specification for Mohammed Safith's personal portfolio website. Designed as a high-impact engineering portfolio, it is structured to simultaneously satisfy three core audiences:</p>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Audience</th>
+            <th style="width: 35%;">Their Primary Goal</th>
+            <th style="width: 40%;">What This Portfolio Delivers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Recruiters & Engineering Managers</strong></td>
+            <td>Assess technical competence for Junior Dev, QA, or IT Operations roles.</td>
+            <td>Clean architecture, unit testing evidence (Liquid Todo, PeerConnect), clean code, downloadable ATS CV.</td>
+          </tr>
+          <tr>
+            <td><strong>Freelance Clients</strong></td>
+            <td>Verify capability to build end-to-end working web & mobile apps.</td>
+            <td>Live production apps (PeerConnect on Vercel, Daily Books Play Store bundle, MedExpense).</td>
+          </tr>
+          <tr>
+            <td><strong>Scholarship & Academic Boards</strong></td>
+            <td>Review academic excellence, rigor, and research potential.</td>
+            <td>City University Malaysia degree credentials, CGPA 3.47, verified recommendation letters.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <div class="callout-title">💡 Core Architecture Philosophy</div>
+        The portfolio itself is built as an <strong>active demonstration of UI engineering skills</strong>. Rather than a static resume page, features like the 4-theme system, multi-language engine with RTL, and interactive project case studies actively prove Safith's hands-on abilities to interviewers.
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Personal Branding & Identity</div>
+      <table>
+        <tbody>
+          <tr>
+            <td style="width: 30%;"><strong>Full Legal Name</strong></td>
+            <td>Mohammed Sarook Mohammed Safith</td>
+          </tr>
+          <tr>
+            <td><strong>Display Name & Subtitle</strong></td>
+            <td><strong>SAFITH</strong> — <em>THE VIBE CODER 😂</em></td>
+          </tr>
+          <tr>
+            <td><strong>Dynamic Title (Hero)</strong></td>
+            <td>Typed text effect cycling through: <code>Junior Full-Stack Developer</code> · <code>QA & Test Automation Enthusiast</code> · <code>IT Operations Specialist</code></td>
+          </tr>
+          <tr>
+            <td><strong>Location & Education</strong></td>
+            <td>Colombo / Trincomalee, Sri Lanka 🇱🇰 | B.IT (Honours), City University Malaysia</td>
+          </tr>
+          <tr>
+            <td><strong>GitHub & Live References</strong></td>
+            <td>GitHub: <code>github.com/safith001</code> | Flagship Live App: <code>peer-connect-node.vercel.app</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span> Technology Stack & Rationale</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+            <th>Why This Tool Was Chosen (Defensibility)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Framework</strong></td>
+            <td><strong>Next.js 14+ (App Router)</strong></td>
+            <td>Reinforces existing Next.js skills from PeerConnect. Provides fast SSG/SSR, native SEO optimization, and automatic Vercel deployment.</td>
+          </tr>
+          <tr>
+            <td><strong>Styling</strong></td>
+            <td><strong>Tailwind CSS 3</strong></td>
+            <td>Utility-first styling mapped to CSS Custom Properties (<code>var(--bg-...)</code>). Enables instantaneous theme switching without DOM rebuilding.</td>
+          </tr>
+          <tr>
+            <td><strong>Motion</strong></td>
+            <td><strong>Framer Motion</strong></td>
+            <td>Declarative scroll reveals, interactive card tilts, and smooth theme cross-fades with hardware acceleration.</td>
+          </tr>
+          <tr>
+            <td><strong>i18n</strong></td>
+            <td><strong>next-intl</strong></td>
+            <td>First-class App Router localization with full Right-to-Left (RTL) layout switching for Urdu and Arabic.</td>
+          </tr>
+          <tr>
+            <td><strong>Contact Channel</strong></td>
+            <td><strong>Formspree / EmailJS</strong></td>
+            <td>Serverless form submission delivering inquiries directly to email without requiring a backend or database.</td>
+          </tr>
+          <tr>
+            <td><strong>Deployment</strong></td>
+            <td><strong>Vercel (Free Tier)</strong></td>
+            <td>Zero-config continuous deployment from GitHub with edge caching and automatic preview branches.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> The 4-Theme Design System Engine</div>
+      <p>The site features a sticky theme selector that dynamically applies CSS variables on the <code>&lt;html data-theme="..."&gt;</code> root element. This demonstrates advanced CSS architecture without breaking HTML structure.</p>
+      
+      <div class="grid-4">
+        <div class="card card-dark">
+          <h4>1. Glassmorphism Dark</h4>
+          <p><strong>Default Mode:</strong> Slate-950 backdrop, frosted glass cards (blur 16px), indigo/violet gradient glows.</p>
+          <p>Matches PeerConnect aesthetic.</p>
+        </div>
+        <div class="card card-light">
+          <h4>2. Minimal Light</h4>
+          <p><strong>Recruiter Mode:</strong> Crisp pure white (#FFF), subtle elevation shadows, blue-600 accents, high contrast.</p>
+          <p>ATS & corporate-friendly.</p>
+        </div>
+        <div class="card card-warm">
+          <h4>3. Warm Earthy</h4>
+          <p><strong>Editorial Mode:</strong> Warm cream (#FAF8F5) background, terracotta (#C2684E) & sage green accents.</p>
+          <p>Approachable craftsmanship.</p>
+        </div>
+        <div class="card card-terminal">
+          <h4>4. Terminal Hacker</h4>
+          <p><strong>Developer Mode:</strong> Deep black (#050505), phosphor matrix green (#00FF41), JetBrains Mono typography.</p>
+          <p>Shows coding passion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-title"><span class="num">5</span> Site Blueprint (Hybrid Architecture)</div>
+      <p>The site combines a smooth-scrolling single page for rapid recruiter evaluation with dedicated deep-dive case study routes (<code>/projects/[slug]</code>) for technical defensibility:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Section</th>
+            <th style="width: 35%;">Key Elements</th>
+            <th style="width: 45%;">User Flow & Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Hero</strong></td>
+            <td>Full name, "Vibe Coder" badge, typed text role cycler, 3 primary CTA buttons.</td>
+            <td>Immediate visual hook; offers one-click scroll to Projects, CV download, or Contact.</td>
+          </tr>
+          <tr>
+            <td><strong>2. About Me</strong></td>
+            <td>City University Malaysia background, CGPA 3.47 stat, continuous learning journey.</td>
+            <td>Provides academic proof and establishes passion for both QA and full-stack development.</td>
+          </tr>
+          <tr>
+            <td><strong>3. Projects</strong></td>
+            <td>4 interactive cards (PeerConnect, Daily Books, MedExpense, Liquid Todo).</td>
+            <td>Displays tech chips, live demo links, GitHub links, and link to full case study.</td>
+          </tr>
+          <tr>
+            <td><strong>4. Skills Matrix</strong></td>
+            <td>Languages, Frontend, Backend, Mobile, Databases, QA/DevOps groupings.</td>
+            <td>Structured visual pill badges matching target job descriptions.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Experience</strong></td>
+            <td>Degree timeline, Guildford Integrated Systems internship, project milestones.</td>
+            <td>Validates 120 credit hours and director recommendation letter.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Contact & CV</strong></td>
+            <td>Formspree form (Name, Email, Message) + direct PDF resume download button.</td>
+            <td>Zero friction for recruiters or clients to initiate inquiries.</td>
+          </tr>
+          <tr>
+            <td><strong>7. Case Studies</strong></td>
+            <td><code>/projects/[slug]</code> dedicated pages with architecture diagrams and lessons.</td>
+            <td>Allows technical interviewers to inspect the exact engineering choices.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="section-title"><span class="num">6</span> Flagship Project Breakdown</div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">1. PeerConnect — Campus Social Networking Platform</span>
+          <span class="badge badge-success">Live on Vercel</span>
+        </div>
+        <p>A production social network connecting university students with email verification, real-time Firestore chat, academic feed, and Cloudinary PDF slide sharing.</p>
+        <div class="tag-container">
+          <span class="tag">Next.js 16</span>
+          <span class="tag">Firebase Auth</span>
+          <span class="tag">Cloud Firestore</span>
+          <span class="tag">Cloudinary</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">TypeScript</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">2. Daily Books — Tamil Islamic PDF Library & Habit Tracker</span>
+          <span class="badge badge-primary">Play Store Ready</span>
+        </div>
+        <p>An elder-friendly, 100% offline PDF reader app with 100 curated books, multi-touch zoom engine, 7-day streak tracker, and decoupled Node.js REST API backend.</p>
+        <div class="tag-container">
+          <span class="tag tag-orange">Node.js API</span>
+          <span class="tag tag-orange">Express</span>
+          <span class="tag tag-orange">Capacitor</span>
+          <span class="tag tag-orange">Flutter</span>
+          <span class="tag tag-orange">Android Gradle</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">3. MedExpense — MBBS Smart Spend Tracker with Gemini AI</span>
+          <span class="badge badge-purple">Mobile App</span>
+        </div>
+        <p>Offline-first Flutter expense ledger with SQLite, automated month-end background sync to Google Sheets, and financial coaching powered by Google Gemini 2.5 Flash.</p>
+        <div class="tag-container">
+          <span class="tag tag-purple">Flutter / Dart</span>
+          <span class="tag tag-purple">SQLite</span>
+          <span class="tag tag-purple">Google Apps Script</span>
+          <span class="tag tag-purple">Gemini AI API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">4. Liquid Todo — Task Management & QA Testing Suite</span>
+          <span class="badge badge-dark">QA & TDD Focus</span>
+        </div>
+        <p>Relational task manager with persistent SQLite storage and an automated test suite verifying database transactions and schema constraints.</p>
+        <div class="tag-container">
+          <span class="tag tag-green">Python</span>
+          <span class="tag tag-green">Flask</span>
+          <span class="tag tag-green">SQLite</span>
+          <span class="tag tag-green">Integration Testing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="section-title"><span class="num">7</span> Multilingual & Internationalization Engine</div>
+      <p>The site is architected for global accessibility with route-based localization (<code>/[locale]/...</code>) managed by <code>next-intl</code>.</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Code</th>
+            <th>Direction</th>
+            <th>Launch Phase</th>
+            <th>Special Architectural Requirements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>English</strong></td>
+            <td><code>en</code></td>
+            <td>LTR</td>
+            <td><strong>Tier 1 (Launch)</strong></td>
+            <td>Default base translation file (<code>messages/en.json</code>).</td>
+          </tr>
+          <tr>
+            <td><strong>Tamil</strong></td>
+            <td><code>ta</code></td>
+            <td>LTR</td>
+            <td><strong>Tier 1 (Launch)</strong></td>
+            <td>Unicode Noto Sans Tamil typography support.</td>
+          </tr>
+          <tr>
+            <td><strong>Urdu</strong></td>
+            <td><code>ur</code></td>
+            <td><strong>RTL</strong></td>
+            <td><strong>Tier 1 (Launch)</strong></td>
+            <td>Right-to-Left layout switching, CSS logical properties (<code>ms-*</code>, <code>me-*</code>).</td>
+          </tr>
+          <tr>
+            <td>Sinhala, Hindi, German, Russian, etc.</td>
+            <td>9 codes</td>
+            <td>LTR/RTL</td>
+            <td>Tier 2 (Roadmap)</td>
+            <td>Decoupled JSON dictionaries allow seamless addition without code changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <div class="section-title"><span class="num">8</span> Phased Sprint Implementation Roadmap</div>
+      
+      <div class="sprint-box">
+        <div class="sprint-header">
+          <span>Sprint 1: Foundation, Design Tokens & Core Layout</span>
+          <span class="badge badge-primary">Week 1</span>
+        </div>
+        <ul class="sprint-list">
+          <li>Initialize Next.js 14+ project with TypeScript and Tailwind CSS.</li>
+          <li>Configure CSS custom properties for all 4 themes in <code>globals.css</code>.</li>
+          <li>Build responsive <code>Header</code> with sticky theme dropdown and mobile navigation.</li>
+          <li>Build <code>HeroSection</code> with typed text animation and primary CTA buttons.</li>
+          <li>Establish continuous deployment pipeline on Vercel.</li>
+        </ul>
+      </div>
+
+      <div class="sprint-box">
+        <div class="sprint-header">
+          <span>Sprint 2: Content Modules & Motion Choreography</span>
+          <span class="badge badge-primary">Week 2</span>
+        </div>
+        <ul class="sprint-list">
+          <li>Implement <code>AboutSection</code> with academic metrics (CGPA 3.47, 4+ apps).</li>
+          <li>Implement <code>ProjectsSection</code> with responsive grid and <code>ProjectCard</code> components.</li>
+          <li>Implement <code>SkillsSection</code> with categorized domain groups.</li>
+          <li>Implement <code>TimelineSection</code> documenting degree and internship milestones.</li>
+          <li>Add Framer Motion scroll reveals (<code>whileInView</code>) across all sections.</li>
+        </ul>
+      </div>
+
+      <div class="sprint-box">
+        <div class="sprint-header">
+          <span>Sprint 3: Case Studies, Contact Form & Resume Access</span>
+          <span class="badge badge-primary">Week 3</span>
+        </div>
+        <ul class="sprint-list">
+          <li>Create dynamic route <code>/projects/[slug]</code> with shared case study layout.</li>
+          <li>Write technical case study content for PeerConnect, Daily Books, MedExpense, and Todo.</li>
+          <li>Implement <code>ContactSection</code> with Formspree headless email endpoint.</li>
+          <li>Wire verified PDF resume download button linked to <code>public/cv/</code>.</li>
+          <li>Integrate active section highlighting via <code>useScrollSpy</code>.</li>
+        </ul>
+      </div>
+
+      <div class="sprint-box">
+        <div class="sprint-header">
+          <span>Sprint 4: Multilingual Engine, RTL & Production Launch</span>
+          <span class="badge badge-primary">Week 4</span>
+        </div>
+        <ul class="sprint-list">
+          <li>Set up <code>next-intl</code> route localization (<code>/[locale]/...</code>).</li>
+          <li>Populate English, Tamil, and Urdu dictionaries in <code>messages/</code>.</li>
+          <li>Enforce RTL styling rules and mirror layouts for Urdu locale.</li>
+          <li>Perform Lighthouse audit (Target ≥ 90 on Performance, A11y, Best Practices, SEO).</li>
+          <li>Production release on Vercel with Open Graph social metadata.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section">
+      <div class="section-title"><span class="num">9</span> Quality Assurance & Acceptance Criteria</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Quality Vector</th>
+            <th>Acceptance Standard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Build Integrity</strong></td>
+            <td>Zero errors during <code>npx next build</code>; strict TypeScript type checking enabled.</td>
+          </tr>
+          <tr>
+            <td><strong>Performance Score</strong></td>
+            <td>Lighthouse score ≥ 90 across Performance, Accessibility, Best Practices, and SEO.</td>
+          </tr>
+          <tr>
+            <td><strong>Responsiveness</strong></td>
+            <td>Pixel-perfect rendering across Mobile (375px+), Tablet (768px+), and Desktop (1280px+).</td>
+          </tr>
+          <tr>
+            <td><strong>Theme Reliability</strong></td>
+            <td>All 4 themes transition cleanly under 300ms with zero contrast violations.</td>
+          </tr>
+          <tr>
+            <td><strong>RTL Symmetry</strong></td>
+            <td>Urdu layout mirrors correctly with proper text alignments and icon directions.</td>
+          </tr>
+          <tr>
+            <td><strong>Contact Inquiries</strong></td>
+            <td>Submitting contact form successfully dispatches an email notification to Safith.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Document Footer -->
+    <div class="doc-footer">
+      <div>Mohammed Sarook Mohammed Safith • Portfolio PRD & Architecture Spec v1.0.0</div>
+      <div>Generated for Antigravity IDE • Ready for Sprint 1 Execution</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mohammed Safith - Engineering Standards & Rules</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 11px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #18181b 0%, #27272a 50%, #3f3f46 100%);
+      color: #ffffff;
+      padding: 22px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #52525b;
+      page-break-inside: avoid;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-red { background: #dc2626; color: #ffffff; }
+    .badge-indigo { background: #4f46e5; color: #ffffff; }
+    .badge-emerald { background: #059669; color: #ffffff; }
+    .badge-dark { background: #52525b; color: #f4f4f5; }
+
+    .header-banner h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+      color: #ffffff;
+    }
+
+    .header-banner .tagline {
+      font-size: 12px;
+      color: #d4d4d8;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .meta-item {
+      font-size: 9.5px;
+    }
+
+    .meta-label {
+      color: #a1a1aa;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 1px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title .num {
+      background: #dc2626;
+      color: #ffffff;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    /* Rule Boxes */
+    .rule-box {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .rule-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .rule-box ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 10px;
+      color: #334155;
+    }
+
+    .rule-box li {
+      margin-bottom: 3px;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .rule-box li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: #dc2626;
+    }
+
+    /* Callouts */
+    .callout {
+      border-left: 3px solid #dc2626;
+      background: #fef2f2;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 10.5px;
+      color: #991b1b;
+      page-break-inside: avoid;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .callout-indigo {
+      border-left-color: #4f46e5;
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 10px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Code */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      margin-top: 18px;
+      font-size: 8.5px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="badge-bar">
+        <span class="badge badge-red">Strict Engineering Rules</span>
+        <span class="badge badge-indigo">Socratic Mentor Directives</span>
+        <span class="badge badge-emerald">Zero Vibe Coding</span>
+        <span class="badge badge-dark">Interview Defensibility</span>
+      </div>
+      <h1>ENGINEERING STANDARDS & BEHAVIORAL RULES</h1>
+      <div class="tagline">Quality Standards & Assistant Directives — Mohammed Sarook Mohammed Safith ("SAFITH THE VIBE CODER 😂")</div>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Philosophy</div>
+          <div class="meta-val">Defensible Engineering</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Assistant Role</div>
+          <div class="meta-val">Senior Tech Lead</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Code Pace</div>
+          <div class="meta-val">One Story at a Time</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Verification</div>
+          <div class="meta-val">2 Socratic Questions/PR</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> Core Philosophy: "Defensible Engineering"</div>
+      <div class="callout">
+        <div class="callout-title">⚖️ The Golden Rule</div>
+        "If you cannot defend a line of code or an architectural decision in a technical interview, it does not belong in the codebase."
+      </div>
+      <p>As an IT graduate actively preparing for full-time engineering and QA roles, the objective is never hands-off code generation. Every component, hook, CSS variable, and library choice must be deeply understood, easily articulated, and grounded in core fundamentals.</p>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Assistant Behavioral Directives</div>
+      
+      <div class="rule-box">
+        <div class="rule-header">
+          <span>Rule 2.1: The "Brakes On" Policy (No Premature Dumps)</span>
+          <span class="badge badge-red">Strictly Enforced</span>
+        </div>
+        <ul>
+          <li><strong>Never</strong> generate multi-file codebases, entire directories, or full scaffolding in a single unreviewed dump.</li>
+          <li><strong>Never</strong> execute autonomous auto-run modes (e.g. <code>/goal</code>) that bypass human verification.</li>
+          <li>Do not write implementation code until an <strong>Implementation Plan (<code>/plan</code>)</strong> has been explicitly inspected and approved by Safith.</li>
+          <li>Work strictly on <strong>one small User Story at a time</strong> (15–30 minute increments).</li>
+        </ul>
+      </div>
+
+      <div class="rule-box">
+        <div class="rule-header">
+          <span>Rule 2.2: Socratic Mentorship & Fundamental Connections</span>
+          <span class="badge badge-indigo">Educational Model</span>
+        </div>
+        <ul>
+          <li>Act as a Senior Tech Lead / Engineering Manager guiding a junior engineer.</li>
+          <li>Connect modern React / Next.js concepts to Safith's Python/Java fundamentals:
+            <br>• React Props & State ➔ Java instance variables & constructor parameters.
+            <br>• Array Mapping (<code>.map()</code>) ➔ Python <code>for item in list:</code> loops.
+            <br>• Conditional Rendering ➔ Standard <code>if / else</code> control flow.
+            <br>• API Endpoints ➔ Restaurant waiters ferrying orders to the kitchen.
+            <br>• Network Ports ➔ Specific apartment unit numbers in a complex.
+          </li>
+        </ul>
+      </div>
+
+      <div class="rule-box">
+        <div class="rule-header">
+          <span>Rule 2.3: Educational Debugging Protocol</span>
+          <span class="badge badge-emerald">Debugging Standard</span>
+        </div>
+        <ul>
+          <li><strong>Never silently patch a terminal error or compilation failure.</strong></li>
+          <li>Walk through stack traces collaboratively: pinpoint exact file, line number, and why the compiler rejected the input.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span> Technical Codebase Standards</div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Strict Coding Rule</th>
+            <th>Rationale & Enforcement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Components</strong></td>
+            <td>Server Components (RSC) first by default.</td>
+            <td>Only add <code>'use client'</code> for browser state (<code>useState</code>), effects, or Framer Motion. Keeps bundle size minimal.</td>
+          </tr>
+          <tr>
+            <td><strong>TypeScript</strong></td>
+            <td><strong>Zero <code>any</code> policy.</strong></td>
+            <td>All data shapes, props, and API returns must use defined interfaces from <code>src/types/index.ts</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Styling</strong></td>
+            <td>Consume CSS variables (<code>var(--...)</code>).</td>
+            <td>Hardcoding hex colors (e.g. <code>#0f172a</code>) inside component markup is banned; breaks the 4-theme engine.</td>
+          </tr>
+          <tr>
+            <td><strong>i18n & RTL</strong></td>
+            <td><strong>CSS Logical Properties required.</strong></td>
+            <td>Never use <code>ml-*</code> or <code>left-*</code>. Use <code>ms-*</code>, <code>me-*</code>, <code>ps-*</code>, <code>start-*</code>, <code>end-*</code> to mirror layout naturally for Urdu (RTL).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> The 3-Part Code Defense Formula</div>
+      <div class="callout callout-indigo">
+        <div class="callout-title">🎯 Interview Defensibility Checklist</div>
+        At the conclusion of each User Story, Safith must be able to answer:
+        <br><strong>1. Why this choice?</strong> Why this library, pattern, or data structure over simpler alternatives?
+        <br><strong>2. What tradeoff was made?</strong> What did we sacrifice (bundle size, simplicity, build time) to gain this capability?
+        <br><strong>3. How does it handle failure?</strong> What happens if the network drops, data is missing, or the user is on slow 3G?
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-title"><span class="num">5</span> Git Commit Standards & Slash Commands</div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Conventional Prefix</th>
+            <th>Purpose</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>feat:</code></td>
+            <td>New feature or section</td>
+            <td><code>feat(hero): add typed text animation cycler</code></td>
+          </tr>
+          <tr>
+            <td><code>fix:</code></td>
+            <td>Bug fix or error resolution</td>
+            <td><code>fix(theme): prevent dark mode FOUC on page load</code></td>
+          </tr>
+          <tr>
+            <td><code>style:</code></td>
+            <td>Visual/CSS variable tweaks</td>
+            <td><code>style(cards): refine 3D hover perspective on project grid</code></td>
+          </tr>
+          <tr>
+            <td><code>docs:</code></td>
+            <td>Documentation or plan updates</td>
+            <td><code>docs(rules): update code defense guidelines</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Document Footer -->
+    <div class="doc-footer">
+      <div>Mohammed Sarook Mohammed Safith • Engineering Standards & Behavioral Rules (RULES.md) v1.0.0</div>
+      <div>Antigravity IDE Certified • Zero Vibe Coding Standard</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

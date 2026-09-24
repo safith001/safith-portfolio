@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 1. Midnight Signature Theme (Default Theme: Deep Purple + Islamic Gold) */
+  :root,
+  html[data-theme="midnight"] {
+    --bg-primary: #0f0c29;         /* deep cosmic navy */
+    --bg-secondary: #1a1540;
+    --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    --bg-card: rgba(48, 43, 99, 0.35);
+    --bg-card-hover: rgba(48, 43, 99, 0.55);
+    --border-card: rgba(252, 176, 69, 0.2);
+    --border-card-hover: rgba(252, 176, 69, 0.55);
+    --backdrop-blur: 18px;
+    --text-primary: #ffffff;
+    --text-secondary: #d4c9f0;     /* soft lavender-white */
+    --text-muted: #9d8ec4;         /* muted purple */
+    --accent-primary: #fcb045;     /* Islamic gold */
+    --accent-secondary: #fd9012;   /* deeper amber gold */
+    --accent-glow: rgba(252, 176, 69, 0.28);
+    --badge-bg: rgba(252, 176, 69, 0.12);
+    --badge-text: #fcb045;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  /* 2. Glassmorphism Dark */
+  html[data-theme="glassmorphism"] {
+    --bg-primary: #030712;         /* slate-950 */
+    --bg-secondary: #0f172a;       /* slate-900 */
+    --bg-gradient: linear-gradient(135deg, #030712 0%, #1e1b4b 50%, #0f172a 100%);
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-card-hover: rgba(255, 255, 255, 0.08);
+    --border-card: rgba(255, 255, 255, 0.12);
+    --border-card-hover: rgba(99, 102, 241, 0.4);
+    --backdrop-blur: 16px;
+    --text-primary: #f8fafc;       /* slate-50 */
+    --text-secondary: #cbd5e1;     /* slate-300 */
+    --text-muted: #94a3b8;         /* slate-400 */
+    --accent-primary: #6366f1;     /* indigo-500 */
+    --accent-secondary: #8b5cf6;   /* violet-500 */
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    --badge-bg: rgba(99, 102, 241, 0.15);
+    --badge-text: #a5b4fc;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  /* 2. Minimal Light Theme (Corporate Recruiter Mode) */
+  html[data-theme="minimal"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --border-card: #e2e8f0;
+    --border-card-hover: #94a3b8;
+    --backdrop-blur: 0px;
+    --text-primary: #0f172a;       /* slate-900 */
+    --text-secondary: #334155;     /* slate-700 */
+    --text-muted: #64748b;         /* slate-500 */
+    --accent-primary: #2563eb;     /* blue-600 */
+    --accent-secondary: #4f46e5;   /* indigo-600 */
+    --accent-glow: rgba(37, 99, 235, 0.12);
+    --badge-bg: #e0e7ff;
+    --badge-text: #3730a3;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  /* 3. Warm Earthy Theme (Organic Editorial Craftsmanship) */
+  html[data-theme="warm"] {
+    --bg-primary: #faf8f5;         /* warm cream alabaster */
+    --bg-secondary: #f4efe8;
+    --bg-gradient: linear-gradient(180deg, #faf8f5 0%, #f4efe8 100%);
+    --bg-card: #ffffff;
+    --bg-card-hover: #fffdfa;
+    --border-card: #e7dfd5;
+    --border-card-hover: #c2684e;
+    --backdrop-blur: 0px;
+    --text-primary: #2d3748;       /* deep charcoal */
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --accent-primary: #c2684e;     /* terracotta */
+    --accent-secondary: #8da399;   /* sage green */
+    --accent-glow: rgba(194, 104, 78, 0.15);
+    --badge-bg: #fbeee8;
+    --badge-text: #9c4832;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  /* 4. Terminal Hacker Theme (Cyberpunk Monospace CLI) */
+  html[data-theme="terminal"] {
+    --bg-primary: #050505;         /* true deep terminal black */
+    --bg-secondary: #0a0e14;
+    --bg-gradient: #050505;
+    --bg-card: #0d1117;
+    --bg-card-hover: #161b22;
+    --border-card: #00ff41;        /* matrix phosphor green */
+    --border-card-hover: #39ff14;
+    --backdrop-blur: 0px;
+    --text-primary: #00ff41;
+    --text-secondary: #00cc33;
+    --text-muted: #008f11;
+    --accent-primary: #00ff41;
+    --accent-secondary: #ffb000;   /* amber warning */
+    --accent-glow: rgba(0, 255, 65, 0.2);
+    --badge-bg: rgba(0, 255, 65, 0.12);
+    --badge-text: #00ff41;
+    --font-body: 'JetBrains Mono', monospace;
+    --font-heading: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
